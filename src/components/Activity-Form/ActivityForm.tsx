@@ -1,6 +1,6 @@
 import React, { useState, useRef, memo } from 'react';
 import { isValidDate } from '../../utility';
-import { Category, Item } from '../../types';
+import { Item } from '../../types';
 
 interface ActivityFormProps {
   onFormSubmit: (data: any, isEdit: boolean) => {};

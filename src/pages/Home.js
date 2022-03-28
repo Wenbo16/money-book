@@ -49,7 +49,7 @@ function Home() {
     return items[id];
   });
   // .filter(item => {
-  // 	return item.date.includes(`${currentDate.year}-${padLeft(currentDate.month)}`)
+  // 	return item.date.includes(`${currentDate.year}-${makeMonthDoubleDigit(currentDate.month)}`)
   // })
 
   let totalIncome = 0;

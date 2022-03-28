@@ -27,15 +27,15 @@ const Create = () => {
     // wait until we have initial data
     const curEditItem = id && items[id] ? items[id] : {};
     setEditItem(curEditItem);
-    const editItemCategory = categories[curEditItem.cid];
-    const hasEditItemCategory = id && curEditItem && editItemCategory;
+    const hasEditItemCategory =
+      id && curEditItem && categories[curEditItem.cid];
     setSelectedTab(
       hasEditItemCategory ? categories[curEditItem.cid].type : TYPE_OUTCOME
     );
     setSelectedCategory(
       hasEditItemCategory ? categories[curEditItem.cid] : null
     );
-  }, [items, categories]);
+  }, [id, items, categories]);
 
   const submitForm = useCallback(
     (data, isEditMode) => {
