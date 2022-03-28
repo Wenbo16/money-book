@@ -2,79 +2,79 @@
   "categories": [
     {
       "name": "旅行",
-      "iconName": "ios-plane",
+      "iconName": "airplane",
       "id": "1",
       "type": "outcome"
     },
     {
       "name": "餐饮",
-      "iconName": "ios-restaurant",
+      "iconName": "restaurant",
       "id": "2",
       "type": "outcome"
     },
     {
       "name": "购物",
-      "iconName": "ios-basket",
+      "iconName": "basket",
       "id": "3",
       "type": "outcome"
     },
     {
       "name": "数码",
-      "iconName": "ios-phone-portrait",
+      "iconName": "phone-portrait",
       "id": "4",
       "type": "outcome"
     },
     {
       "name": "交通",
-      "iconName": "ios-train",
+      "iconName": "train",
       "id": "5",
       "type": "outcome"
     },
     {
       "name": "娱乐",
-      "iconName": "ios-beer",
+      "iconName": "beer",
       "id": "6",
       "type": "outcome"
     },
     {
       "name": "汽车",
-      "iconName": "ios-car",
+      "iconName": "car",
       "id": "7",
       "type": "outcome"
     },
     {
       "name": "医疗",
-      "iconName": "ios-medkit",
+      "iconName": "medkit",
       "id": "8",
       "type": "outcome"
     },
     {
       "name": "体育",
-      "iconName": "ios-football",
+      "iconName": "football",
       "id": "14",
       "type": "outcome"
     },
     {
       "name": "宠物",
-      "iconName": "ios-paw",
+      "iconName": "paw",
       "id": "9",
       "type": "outcome"
     },
     {
       "name": "其他",
-      "iconName": "ios-apps",
+      "iconName": "apps",
       "id": "14",
       "type": "outcome"
     },
     {
       "name": "工资",
-      "iconName": "ios-card",
+      "iconName": "card",
       "id": "10",
       "type": "income"
     },
     {
       "name": "兼职",
-      "iconName": "ios-cash",
+      "iconName": "cash",
       "id": "11",
       "type": "income"
     },
@@ -92,7 +92,7 @@
     },
     {
       "name": "其他",
-      "iconName": "ios-apps",
+      "iconName": "apps",
       "id": "15",
       "type": "income"
     }
@@ -189,7 +189,7 @@
       "cid": "10",
       "category": {
         "name": "工资",
-        "iconName": "ios-card",
+        "iconName": "card",
         "id": "10",
         "type": "income"
       }
@@ -222,7 +222,7 @@
       "cid": "2",
       "category": {
         "name": "餐饮",
-        "iconName": "ios-restaurant",
+        "iconName": "restaurant",
         "id": "2",
         "type": "outcome"
       }
@@ -237,7 +237,7 @@
       "cid": "1",
       "category": {
         "name": "旅行",
-        "iconName": "ios-plane",
+        "iconName": "plane",
         "id": "1",
         "type": "outcome"
       }
@@ -252,7 +252,7 @@
       "cid": "10",
       "category": {
         "name": "餐饮",
-        "iconName": "ios-restaurant",
+        "iconName": "restaurant",
         "id": "2",
         "type": "outcome"
       }
@@ -276,12 +276,12 @@
       "cid": "14"
     },
     {
-      "title": "1233",
+      "title": "123",
       "amount": 123,
-      "date": "2022-03-23",
+      "date": "2022-03-27",
       "monthCategory": "2022-3",
-      "timestamp": 1647993600000,
-      "id": "_ey0l04ryx",
+      "timestamp": 1648339200000,
+      "id": "_xiryrfhyk",
       "cid": "6"
     }
   ]

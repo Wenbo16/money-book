@@ -1,7 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Summary = ({ income, outcome }) => (
+interface SummaryProps {
+  income: number;
+  outcome: number;
+}
+
+const Summary = ({ income, outcome }: SummaryProps) => (
   <div className="row">
     <div className="col">
       <h5 className="income">
@@ -16,8 +20,4 @@ const Summary = ({ income, outcome }) => (
   </div>
 );
 
-Summary.propTypes = {
-  income: PropTypes.number.isRequired,
-  outcome: PropTypes.number.isRequired,
-};
 export default Summary;

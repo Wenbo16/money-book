@@ -4,7 +4,7 @@ import React from 'react';
 interface TabsProps {
   children: React.ReactNode;
   activeIndex: number;
-  onTabChange: (i: number) => {};
+  onTabChange: (i: number) => void;
 }
 
 export const Tabs = ({ children, activeIndex, onTabChange }: TabsProps) => {
@@ -18,7 +18,7 @@ export const Tabs = ({ children, activeIndex, onTabChange }: TabsProps) => {
             <a
               href="#"
               className={activeClassName}
-              onClick={(event) => {
+              onClick={() => {
                 onTabChange(index);
               }}
             >

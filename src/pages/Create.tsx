@@ -6,33 +6,34 @@ import CategorySelect from '../components/CategorySelect/CategorySelect';
 import { TYPE_OUTCOME, TYPE_INCOME } from '../utility';
 import { AppContext } from '../context';
 import { useEffect } from 'react';
+import { Category, Item } from '../types';
+
+const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
 const Create = () => {
-  const tabs = [TYPE_OUTCOME, TYPE_INCOME];
-
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { items, categories, actions } = useContext(AppContext);
   const [isValid, setIsValid] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category>(null);
 
   // editItem has to be a state, otherwise every refresh(by setIsValid) would re-run the function component thus pass by a new item
-  const [editItem, setEditItem] = useState({});
+  const [editItem, setEditItem] = useState<Item | {}>({});
 
   let history = useHistory();
+
   useEffect(() => {
     // wait until we have initial data
     const curEditItem = id && items[id] ? items[id] : {};
     setEditItem(curEditItem);
     const editItemCategory = categories[curEditItem.cid];
+    const hasEditItemCategory = id && curEditItem && editItemCategory;
     setSelectedTab(
-      id && curEditItem && editItemCategory
-        ? categories[curEditItem.cid].type
-        : TYPE_OUTCOME
+      hasEditItemCategory ? categories[curEditItem.cid].type : TYPE_OUTCOME
     );
     setSelectedCategory(
-      id && curEditItem && editItemCategory ? categories[curEditItem.cid] : null
+      hasEditItemCategory ? categories[curEditItem.cid] : null
     );
   }, [items, categories]);
 
