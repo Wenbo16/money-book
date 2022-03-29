@@ -1,17 +1,17 @@
-import React, { useState, useRef, memo } from 'react';
-import { isValidDate } from '../../utility';
-import { Item } from '../../types';
+import React, { useState, useRef, memo } from "react";
+import { isValidDate } from "../../utility";
+import { Item } from "../../types";
 
 interface ActivityFormProps {
-  onFormSubmit: (data: any, isEdit: boolean) => {};
-  onCancelSubmit: () => {};
-  item: Item;
+  onFormSubmit: (data: any, isEdit: boolean) => void;
+  onCancelSubmit: () => void;
+  item: Item | null;
 }
 
 // edit mode default value based on Item props, so it has to be unconotrolled form
 const ActivityForm = memo(
   ({ item, onFormSubmit, onCancelSubmit }: ActivityFormProps) => {
-    const [errMessage, setErrMessage] = useState('');
+    const [errMessage, setErrMessage] = useState("");
 
     // useEffect(() => {
     //     setTitle(item.title);
@@ -19,26 +19,27 @@ const ActivityForm = memo(
     //     setDate(item.date);
     // }, [item])
 
-    const amountInput = useRef(null);
-    const dateInput = useRef(null);
-    const titleInput = useRef(null);
+    const amountInput = useRef<HTMLInputElement>(null);
+    const dateInput = useRef<HTMLInputElement>(null);
+    const titleInput = useRef<HTMLInputElement>(null);
 
     const submitForm = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.preventDefault();
-      const editMode = !!item.id;
-      const amount = amountInput?.current?.value?.trim() * 1;
-      const date = dateInput.current.value.trim();
-      const title = titleInput.current.value.trim();
+      const editMode = !!item?.id;
+      // *
+      const amount = Number(amountInput?.current?.value.trim());
+      const date = dateInput?.current?.value.trim();
+      const title = titleInput?.current?.value.trim();
 
       if (!amount || !date || !title) {
-        setErrMessage('请输入所有必选项');
+        setErrMessage("请输入所有必选项");
       } else {
         if (amount < 0) {
-          setErrMessage('价格数字必须大于0');
+          setErrMessage("价格数字必须大于0");
         } else if (!isValidDate(date)) {
-          setErrMessage('请填写正确的日期格式');
+          setErrMessage("请填写正确的日期格式");
         } else {
-          setErrMessage('');
+          setErrMessage("");
           if (editMode) {
             onFormSubmit(
               { ...item, title: title, amount: amount, date: date },
@@ -53,7 +54,7 @@ const ActivityForm = memo(
         }
       }
     };
-    const { title, amount, date } = item;
+
     return (
       <div>
         <form>
@@ -64,7 +65,7 @@ const ActivityForm = memo(
               className="form-control"
               id="activity-form-title"
               placeholder="请输入标题"
-              defaultValue={title}
+              defaultValue={item?.title}
               ref={titleInput}
             />
           </div>
@@ -75,7 +76,7 @@ const ActivityForm = memo(
               className="form-control"
               id="activity-form-amount"
               placeholder="请输入金额"
-              defaultValue={amount}
+              defaultValue={item?.amount}
               ref={amountInput}
             />
           </div>
@@ -85,7 +86,7 @@ const ActivityForm = memo(
               type="date"
               className="form-control"
               id="activity-form-date"
-              defaultValue={date}
+              defaultValue={item?.date}
               placeholder="请输入日期"
               ref={dateInput}
             />

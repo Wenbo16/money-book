@@ -1,12 +1,12 @@
-import React, { useState, useContext, useCallback, useMemo } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import ActivityForm from '../components/Activity-Form/ActivityForm';
-import { Tabs, Tab } from '../components/Tabs/Tabs';
-import CategorySelect from '../components/CategorySelect/CategorySelect';
-import { TYPE_OUTCOME, TYPE_INCOME } from '../utility';
-import { AppContext } from '../context';
-import { useEffect } from 'react';
-import { Category, Item } from '../types';
+import React, { useState, useContext, useCallback, useMemo } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import ActivityForm from "../components/Activity-Form/ActivityForm";
+import { Tabs, Tab } from "../components/Tabs/Tabs";
+import CategorySelect from "../components/CategorySelect/CategorySelect";
+import { TYPE_OUTCOME, TYPE_INCOME } from "../utility";
+import { AppContext } from "../context";
+import { useEffect } from "react";
+import { Category, Item } from "../types";
 
 const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
@@ -16,10 +16,12 @@ const Create = () => {
   const [isValid, setIsValid] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
-  const [selectedCategory, setSelectedCategory] = useState<Category>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
 
   // editItem has to be a state, otherwise every refresh(by setIsValid) would re-run the function component thus pass by a new item
-  const [editItem, setEditItem] = useState<Item | {}>({});
+  const [editItem, setEditItem] = useState<Item | null>(null);
 
   let history = useHistory();
 
@@ -46,18 +48,18 @@ const Create = () => {
       if (!isEditMode) {
         actions
           .createItem(data, selectedCategory.id)
-          .then(() => history.push('/'));
+          .then(() => history.push("/"));
       } else {
         actions
           .updateItem(data, selectedCategory.id)
-          .then(() => history.push('/'));
+          .then(() => history.push("/"));
       }
     },
     [selectedCategory]
   );
 
   const cancelSubmit = useCallback(() => {
-    history.push('/');
+    history.push("/");
   }, []);
 
   const filterCategories = useMemo(
@@ -80,7 +82,7 @@ const Create = () => {
   return (
     <div
       className="create-page py-3 px-3 rounded mt-3"
-      style={{ background: '#fff' }}
+      style={{ background: "#fff" }}
     >
       <Tabs activeIndex={tabs.indexOf(selectedTab)} onTabChange={onTabChange}>
         <Tab>Outcome</Tab>

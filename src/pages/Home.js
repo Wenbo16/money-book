@@ -1,21 +1,17 @@
-import React, { useState, useContext } from 'react';
-import Ionicon from 'react-ionicons';
-import { useHistory } from 'react-router-dom';
-import { AppContext } from '../context';
-import logo from '../logo.svg';
-import Loader from '../components/Loader/Loader';
-import ActivityList from '../components/Activity-List/ActivityList';
-import { Tabs, Tab } from '../components/Tabs/Tabs';
-import Summary from '../components/Summary/Summary';
-import MonthPicker from '../components/Month-Picker/MonthPicker';
-
-import { LIST_VIEW, CHART_VIEW, TYPE_OUTCOME } from '../utility';
-
-const tabs = [LIST_VIEW, CHART_VIEW];
+import React, { useState, useContext } from "react";
+import Ionicon from "react-ionicons";
+import { useHistory } from "react-router-dom";
+import { AppContext } from "../context";
+import logo from "../logo.svg";
+import Loader from "../components/Loader/Loader";
+import ActivityList from "../components/Activity-List/ActivityList";
+import Summary from "../components/Summary/Summary";
+import MonthPicker from "../components/Month-Picker/MonthPicker";
+import styled from "@emotion/styled";
+import { TYPE_OUTCOME } from "../utility";
 
 // 数据流
 function Home() {
-  const [tabView, setTabViews] = useState(tabs[0]);
   const { items, categories, currentDate, actions, isLoading } =
     useContext(AppContext);
   let history = useHistory();
@@ -23,17 +19,12 @@ function Home() {
   // useEffect(() => {
   //   actions.getInitialData();
   // }, [])
-
-  const changeView = (index) => {
-    setTabViews(tabs[index]);
-  };
-
   const changeDate = (year, month) => {
     actions.selectNewMonth(year, month);
   };
 
   const createItem = () => {
-    history.push('/create');
+    history.push("/create");
   };
 
   const modifyItem = (modifiedItem) => {
@@ -64,7 +55,7 @@ function Home() {
 
   return (
     <div className="Home">
-      <header className="App-header">
+      <Header className="App-header">
         <div className="row mb-5">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
@@ -80,58 +71,22 @@ function Home() {
             <Summary income={totalIncome} outcome={totalOutcome} />
           </div>
         </div>
-      </header>
+      </Header>
       <div className="content-area py-3 px-3">
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <Tabs activeIndex={tabs.indexOf(tabView)} onTabChange={changeView}>
-            <Tab>
-              <Ionicon
-                className="rounded-circle mr-2"
-                fontSize="25px"
-                color={'#007bff'}
-                icon="ios-paper"
-              />
-              列表模式
-            </Tab>
-            <Tab>
-              <Ionicon
-                className="rounded-circle mr-2"
-                fontSize="25px"
-                color={'#007bff'}
-                icon="ios-pie"
-              />
-              图表模式
-            </Tab>
-          </Tabs>
-        )}
-        <button
-          className="btn btn-primary btn-block d-flex justify-content-center align-items-center"
-          onClick={(e) => {
-            createItem();
-          }}
-        >
-          <Ionicon
-            className="rounded-circle"
-            fontSize="30px"
-            color="#fff"
-            icon="ios-add-circle"
-          />
-          创建一条新的记账记录
-        </button>
-
-        {tabView === LIST_VIEW && (
-          <ActivityList
-            items={itemsWithCategory}
-            onModifyItem={modifyItem}
-            onDeleteItem={deleteItem}
-          />
-        )}
-        {tabView === CHART_VIEW && <h1>This is Chart View</h1>}
+        <ActivityList
+          items={itemsWithCategory}
+          onModifyItem={modifyItem}
+          onDeleteItem={deleteItem}
+        />
       </div>
     </div>
   );
 }
+
+const Header = styled.header`
+  background-color: #a3c7be;
+  padding: 20px;
+  color: white;
+`;
 
 export default Home;

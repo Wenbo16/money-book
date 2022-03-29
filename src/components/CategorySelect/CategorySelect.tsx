@@ -1,20 +1,20 @@
-import React, { memo } from 'react';
-import { Colors } from '../../utility';
-import { IonIcon, addIcons } from 'react-svg-ionicons';
-import bundle from 'react-svg-ionicons/bundles/all';
-import { Category } from '../../types';
+import React, { memo } from "react";
+import { Colors } from "../../utility";
+import { IonIcon, addIcons } from "react-svg-ionicons";
+import bundle from "react-svg-ionicons/bundles/all";
+import { Category } from "../../types";
 
 // This loads the full Ionicon set
 addIcons(bundle);
 
-interface CategorySelect {
+interface CategorySelectProps {
   categories: Category[];
-  selectedCategory: Category;
+  selectedCategory: Category | null;
   onSelectCategory: (c: Category) => void;
 }
 
 const CategorySelect = memo(
-  ({ categories, selectedCategory, onSelectCategory }: CategorySelect) => {
+  ({ categories, selectedCategory, onSelectCategory }: CategorySelectProps) => {
     const selectedCategoryId = selectedCategory && selectedCategory.id;
     return (
       <div className="category-select">
@@ -29,22 +29,22 @@ const CategorySelect = memo(
 
             const activeClassName =
               selectedCategoryId === category.id
-                ? 'category-item col-3 active'
-                : 'category-item col-3';
+                ? "category-item col-3 active"
+                : "category-item col-3";
 
             return (
               <div
                 className={activeClassName}
                 key={index}
                 role="button"
-                style={{ textAlign: 'center' }}
+                style={{ textAlign: "center" }}
                 onClick={() => {
                   onSelectCategory(category);
                 }}
               >
                 <IonIcon
                   className="rounded-circle"
-                  style={{ backgroundColor: backColor, padding: '5px' }}
+                  style={{ backgroundColor: backColor, padding: "5px" }}
                   fontSize="50px"
                   color={iconColor}
                   name={category.iconName}

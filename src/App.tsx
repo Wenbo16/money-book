@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
-import { Category } from './types/';
-import './App.css';
-import Home from './pages/Home';
-import Create from './pages/Create';
-import { flattenArr, removeKey, ID, parseToYearAndMonth } from './utility';
-import { AppContext } from './context';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
+import { Item, Category } from "./types";
+import Home from "./pages/Home";
+import Create from "./pages/Create";
+import { flattenArr, removeKey, ID, parseToYearAndMonth } from "./utility";
+import { AppContext } from "./context";
+import Nav from "./pages/Nav";
+import Stats from "./pages/Stats";
+import Map from "./pages/Map";
+import "./App.css";
 
 function App() {
   const [items, setItems] = useState({});
@@ -19,7 +22,7 @@ function App() {
       setIsLoading(true);
       const getURLWithData = `/items?monthCategory=${currentDate.year}-${currentDate.month}&_sort=timestamp&_order=desc`;
       const results = await Promise.all([
-        axios.get('/categories'),
+        axios.get("/categories"),
         axios.get(getURLWithData),
       ]);
       const [categories, items] = results;
@@ -28,7 +31,7 @@ function App() {
       setIsLoading(false);
     },
 
-    selectNewMonth: async (year, month) => {
+    selectNewMonth: async (year: number, month: number) => {
       setIsLoading(true);
       const getURLWithData = `/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`;
       const items = await axios.get(getURLWithData);
@@ -38,7 +41,7 @@ function App() {
       return items;
     },
 
-    deleteItem: async (item) => {
+    deleteItem: async (item: Item) => {
       setIsLoading(true);
       const deleteItem = await axios.delete(`/items/${item.id}`);
       let newItems = removeKey(items, item.id);
@@ -47,14 +50,14 @@ function App() {
       return deleteItem;
     },
 
-    createItem: async (data, categoryId) => {
+    createItem: async (data: any, categoryId: string) => {
       setIsLoading(true);
       const newId = ID();
       const parsedDate = parseToYearAndMonth(data.date);
       data.monthCategory = `${parsedDate.year}-${parsedDate.month}`;
       data.timestamp = new Date(data.date).getTime();
 
-      const newItem = await axios.post('/items', {
+      const newItem = await axios.post("/items", {
         ...data,
         id: newId,
         cid: categoryId,
@@ -64,7 +67,7 @@ function App() {
       return newItem.data;
     },
 
-    updateItem: async (item, categoryId) => {
+    updateItem: async (item: Item, categoryId: string) => {
       setIsLoading(true);
       const modifiedItem = {
         ...item,
@@ -103,10 +106,17 @@ function App() {
               <Route path="/edit/:id">
                 <Create />
               </Route>
+              <Route path="/stats">
+                <Stats />
+              </Route>
+              <Route path="/map">
+                <Map />
+              </Route>
               <Route path="/">
                 <Home />
               </Route>
             </Switch>
+            <Nav />
           </div>
         </div>
       </Router>
