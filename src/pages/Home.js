@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import Ionicon from "react-ionicons";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../context";
 import logo from "../logo.svg";
@@ -8,23 +7,28 @@ import ActivityList from "../components/Activity-List/ActivityList";
 import Summary from "../components/Summary/Summary";
 import MonthPicker from "../components/Month-Picker/MonthPicker";
 import styled from "@emotion/styled";
-import { TYPE_OUTCOME } from "../utility";
+import { TYPE_OUTCOME, removeKey, flattenArr } from "../utility";
+import { useDeleteItem, useGetMonthItems } from "../hooks/useItems";
 
 // 数据流
 function Home() {
-  const { items, categories, currentDate, actions, isLoading } =
-    useContext(AppContext);
+  const {
+    items,
+    categories,
+    currentDate,
+    setCurrentDate,
+    setItems,
+    isLoading,
+  } = useContext(AppContext);
   let history = useHistory();
+  const { mutate: mutateDeleteItem } = useDeleteItem();
+  const { mutate: mutateGetMonthItems } = useGetMonthItems();
 
-  // useEffect(() => {
-  //   actions.getInitialData();
-  // }, [])
   const changeDate = (year, month) => {
-    actions.selectNewMonth(year, month);
-  };
-
-  const createItem = () => {
-    history.push("/create");
+    mutateGetMonthItems(year, month).then((items) => {
+      setItems(flattenArr(items.data));
+      setCurrentDate({ year, month });
+    });
   };
 
   const modifyItem = (modifiedItem) => {
@@ -32,7 +36,10 @@ function Home() {
   };
 
   const deleteItem = (item) => {
-    actions.deleteItem(item);
+    mutateDeleteItem(item).then((deletedItem) => {
+      let newItems = removeKey(items, item.id);
+      setItems(newItems);
+    });
   };
 
   const itemsWithCategory = Object.keys(items).map((id) => {

@@ -206,8 +206,8 @@
     {
       "title": "dfgs",
       "amount": 234,
-      "date": "2020-07-03",
-      "monthCategory": "2020-7",
+      "date": "2022-07-03",
+      "monthCategory": "2022-7",
       "timestamp": 1593734400000,
       "id": "_pq3t9pgxs",
       "cid": "6"
@@ -215,8 +215,8 @@
     {
       "title": "吃晚饭",
       "amount": 200,
-      "date": "2020-06-20",
-      "monthCategory": "2020-6",
+      "date": "2022-06-20",
+      "monthCategory": "2022-6",
       "timestamp": 1592611200000,
       "id": "_duxwzx5fw",
       "cid": "2",
@@ -230,8 +230,8 @@
     {
       "title": "滑雪",
       "amount": 500,
-      "date": "2020-06-18",
-      "monthCategory": "2020-6",
+      "date": "2022-06-18",
+      "monthCategory": "2022-6",
       "timestamp": 1592438400000,
       "id": "_v6duhlm8s",
       "cid": "1",
@@ -245,8 +245,8 @@
     {
       "title": "打工",
       "amount": 8000,
-      "date": "2020-06-19",
-      "monthCategory": "2020-6",
+      "date": "2022-06-19",
+      "monthCategory": "2022-6",
       "timestamp": 1592524800000,
       "id": "_4tkexelnd",
       "cid": "10",
@@ -260,8 +260,8 @@
     {
       "title": "出国旅游",
       "amount": 10000,
-      "date": "2020-06-20",
-      "monthCategory": "2020-6",
+      "date": "2022-06-20",
+      "monthCategory": "2022-6",
       "timestamp": 1592611200000,
       "id": "_fz021svy9",
       "cid": "1"
@@ -269,8 +269,8 @@
     {
       "title": "吃晚饭",
       "amount": 200,
-      "date": "2020-06-10",
-      "monthCategory": "2020-6",
+      "date": "2022-06-10",
+      "monthCategory": "2022-6",
       "timestamp": 1591747200000,
       "id": "_8st9mx3do",
       "cid": "14"
@@ -283,6 +283,55 @@
       "timestamp": 1648339200000,
       "id": "_xiryrfhyk",
       "cid": "6"
+    },
+    {
+      "title": "666",
+      "amount": 666,
+      "date": "2022-03-29",
+      "monthCategory": "2022-3",
+      "timestamp": 1648512000000,
+      "id": "_huh6v09co",
+      "cid": "2"
+    },
+    {
+      "title": "new item",
+      "amount": 887,
+      "date": "2022-03-30",
+      "monthCategory": "2022-3",
+      "timestamp": 1648598400000,
+      "id": "_3cgk4vivr",
+      "cid": "6",
+      "category": {
+        "name": "娱乐",
+        "iconName": "beer",
+        "id": "6",
+        "type": "outcome"
+      }
+    },
+    {
+      "title": "new",
+      "amount": 323,
+      "date": "2022-03-09",
+      "id": "_g8ppd0un8",
+      "cid": "9"
+    },
+    {
+      "title": "test",
+      "amount": 22,
+      "date": "2022-03-30",
+      "monthCategory": "2022-3",
+      "timestamp": 1648598400000,
+      "id": "_2sr3k84vh",
+      "cid": "8"
+    },
+    {
+      "title": "Food",
+      "amount": 550,
+      "date": "2022-03-30",
+      "monthCategory": "2022-3",
+      "timestamp": 1648598400000,
+      "id": "_qekr1egzx",
+      "cid": "2"
     }
   ]
 }

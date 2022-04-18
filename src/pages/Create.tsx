@@ -1,18 +1,24 @@
-import React, { useState, useContext, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+  useMemo,
+} from "react";
 import { useParams, useHistory } from "react-router-dom";
 import ActivityForm from "../components/Activity-Form/ActivityForm";
 import { Tabs, Tab } from "../components/Tabs/Tabs";
 import CategorySelect from "../components/CategorySelect/CategorySelect";
 import { TYPE_OUTCOME, TYPE_INCOME } from "../utility";
 import { AppContext } from "../context";
-import { useEffect } from "react";
 import { Category, Item } from "../types";
+import { useCreateItem, useUpdateItem } from "../hooks/useItems";
 
 const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
 const Create = () => {
   const { id } = useParams<{ id: string }>();
-  const { items, categories, actions } = useContext(AppContext);
+  const { items, setItems, categories } = useContext(AppContext);
   const [isValid, setIsValid] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
@@ -21,9 +27,11 @@ const Create = () => {
   );
 
   // editItem has to be a state, otherwise every refresh(by setIsValid) would re-run the function component thus pass by a new item
-  const [editItem, setEditItem] = useState<Item | null>(null);
+  const [editItem, setEditItem] = useState<Item | {}>({});
 
   let history = useHistory();
+  const { mutate: mutateCreateItem } = useCreateItem();
+  const { mutate: updateCreateItem } = useUpdateItem();
 
   useEffect(() => {
     // wait until we have initial data
@@ -46,13 +54,15 @@ const Create = () => {
         return;
       }
       if (!isEditMode) {
-        actions
-          .createItem(data, selectedCategory.id)
-          .then(() => history.push("/"));
+        mutateCreateItem(data, selectedCategory.id).then((newItem) => {
+          setItems({ ...items, [newItem.data.id]: newItem.data });
+          history.push("/");
+        });
       } else {
-        actions
-          .updateItem(data, selectedCategory.id)
-          .then(() => history.push("/"));
+        updateCreateItem(data, selectedCategory.id).then((item) => {
+          setItems({ ...items, [item.data.id]: item.data });
+          history.push("/");
+        });
       }
     },
     [selectedCategory]

@@ -5,7 +5,7 @@ import { Item } from "../../types";
 interface ActivityFormProps {
   onFormSubmit: (data: any, isEdit: boolean) => void;
   onCancelSubmit: () => void;
-  item: Item | null;
+  item: Item | {};
 }
 
 // edit mode default value based on Item props, so it has to be unconotrolled form
@@ -23,10 +23,11 @@ const ActivityForm = memo(
     const dateInput = useRef<HTMLInputElement>(null);
     const titleInput = useRef<HTMLInputElement>(null);
 
+    const isItem = (value: any): value is Item => value?.id;
+
     const submitForm = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.preventDefault();
-      const editMode = !!item?.id;
-      // *
+      const editMode = !!isItem(item);
       const amount = Number(amountInput?.current?.value.trim());
       const date = dateInput?.current?.value.trim();
       const title = titleInput?.current?.value.trim();
@@ -65,7 +66,7 @@ const ActivityForm = memo(
               className="form-control"
               id="activity-form-title"
               placeholder="请输入标题"
-              defaultValue={item?.title}
+              defaultValue={isItem(item) ? item?.title : ""}
               ref={titleInput}
             />
           </div>
@@ -76,7 +77,7 @@ const ActivityForm = memo(
               className="form-control"
               id="activity-form-amount"
               placeholder="请输入金额"
-              defaultValue={item?.amount}
+              defaultValue={isItem(item) ? item?.amount : ""}
               ref={amountInput}
             />
           </div>
@@ -86,7 +87,7 @@ const ActivityForm = memo(
               type="date"
               className="form-control"
               id="activity-form-date"
-              defaultValue={item?.date}
+              defaultValue={isItem(item) ? item?.date : ""}
               placeholder="请输入日期"
               ref={dateInput}
             />
