@@ -276,24 +276,6 @@
       "cid": "14"
     },
     {
-      "title": "123",
-      "amount": 123,
-      "date": "2022-03-27",
-      "monthCategory": "2022-3",
-      "timestamp": 1648339200000,
-      "id": "_xiryrfhyk",
-      "cid": "6"
-    },
-    {
-      "title": "666",
-      "amount": 666,
-      "date": "2022-03-29",
-      "monthCategory": "2022-3",
-      "timestamp": 1648512000000,
-      "id": "_huh6v09co",
-      "cid": "2"
-    },
-    {
       "title": "new item",
       "amount": 887,
       "date": "2022-03-30",
@@ -332,6 +314,15 @@
       "timestamp": 1648598400000,
       "id": "_qekr1egzx",
       "cid": "2"
+    },
+    {
+      "title": "0420",
+      "amount": 120,
+      "date": "2022-04-20",
+      "monthCategory": "2022-4",
+      "timestamp": 1650412800000,
+      "id": "_fm0jpp3dr",
+      "cid": "6"
     }
   ]
 }

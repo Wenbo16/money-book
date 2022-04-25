@@ -19,6 +19,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ionicons": "2.1.6",
+    "react-query": "^3.35.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-svg-ionicons": "^0.2.3",

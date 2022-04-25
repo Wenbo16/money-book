@@ -7,26 +7,30 @@ import ActivityList from "../components/Activity-List/ActivityList";
 import Summary from "../components/Summary/Summary";
 import MonthPicker from "../components/Month-Picker/MonthPicker";
 import styled from "@emotion/styled";
-import { TYPE_OUTCOME, removeKey, flattenArr } from "../utility";
-import { useDeleteItem, useGetMonthItems } from "../hooks/useItems";
+import { TYPE_OUTCOME } from "../utility";
+import {
+  useCategories,
+  useItems,
+  useDeleteItem,
+  useGetMonthItems,
+} from "../services/items";
 
 // 数据流
 function Home() {
-  const {
-    items,
-    categories,
-    currentDate,
-    setCurrentDate,
-    setItems,
-    isLoading,
-  } = useContext(AppContext);
+  const { currentDate, setCurrentDate } = useContext(AppContext);
+  const { data: categories = {} } = useCategories();
+  const { data: items = {} } = useItems({
+    monthCategory: `${currentDate.year}-${currentDate.month}`,
+    _sort: "timestamp",
+    _order: "desc",
+  });
+
   let history = useHistory();
   const { mutate: mutateDeleteItem } = useDeleteItem();
   const { mutate: mutateGetMonthItems } = useGetMonthItems();
 
   const changeDate = (year, month) => {
     mutateGetMonthItems(year, month).then((items) => {
-      setItems(flattenArr(items.data));
       setCurrentDate({ year, month });
     });
   };
@@ -36,10 +40,7 @@ function Home() {
   };
 
   const deleteItem = (item) => {
-    mutateDeleteItem(item).then((deletedItem) => {
-      let newItems = removeKey(items, item.id);
-      setItems(newItems);
-    });
+    mutateDeleteItem(item.id);
   };
 
   const itemsWithCategory = Object.keys(items).map((id) => {

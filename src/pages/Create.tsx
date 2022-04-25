@@ -12,13 +12,23 @@ import CategorySelect from "../components/CategorySelect/CategorySelect";
 import { TYPE_OUTCOME, TYPE_INCOME } from "../utility";
 import { AppContext } from "../context";
 import { Category, Item } from "../types";
-import { useCreateItem, useUpdateItem } from "../hooks/useItems";
+import {
+  useItems,
+  useCategories,
+  useCreateItem,
+  useUpdateItem,
+} from "../services/items";
 
 const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
 const Create = () => {
   const { id } = useParams<{ id: string }>();
-  const { items, setItems, categories } = useContext(AppContext);
+  const { currentDate } = useContext(AppContext);
+  const { data: categories = {} } = useCategories();
+  const { data: items = {} } = useItems({
+    monthCategory: `${currentDate.year}-${currentDate.month}`,
+  });
+
   const [isValid, setIsValid] = useState(true);
 
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
@@ -48,21 +58,20 @@ const Create = () => {
   }, [id, items, categories]);
 
   const submitForm = useCallback(
-    (data, isEditMode) => {
+    async (data: Partial<Item>, isEditMode) => {
       if (!selectedCategory) {
         setIsValid(false);
         return;
       }
       if (!isEditMode) {
-        mutateCreateItem(data, selectedCategory.id).then((newItem) => {
-          setItems({ ...items, [newItem.data.id]: newItem.data });
-          history.push("/");
+        await mutateCreateItem({
+          data,
+          categoryId: selectedCategory.id,
         });
+        history.push("/");
       } else {
-        updateCreateItem(data, selectedCategory.id).then((item) => {
-          setItems({ ...items, [item.data.id]: item.data });
-          history.push("/");
-        });
+        await updateCreateItem({ data, categoryId: selectedCategory.id });
+        history.push("/");
       }
     },
     [selectedCategory]
