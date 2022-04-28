@@ -46,6 +46,7 @@ const Create = () => {
   useEffect(() => {
     // wait until we have initial data
     const curEditItem = id && items[id] ? items[id] : {};
+
     setEditItem(curEditItem);
     const hasEditItemCategory =
       id && curEditItem && categories[curEditItem.cid];

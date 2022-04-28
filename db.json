@@ -323,6 +323,15 @@
       "timestamp": 1650412800000,
       "id": "_fm0jpp3dr",
       "cid": "6"
+    },
+    {
+      "title": "new item",
+      "amount": 145,
+      "date": "2022-04-06",
+      "monthCategory": "2022-4",
+      "timestamp": 1649203200000,
+      "id": "_qnhse7h47",
+      "cid": "6"
     }
   ]
 }

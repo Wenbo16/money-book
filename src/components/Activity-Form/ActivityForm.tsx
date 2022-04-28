@@ -13,12 +13,6 @@ const ActivityForm = memo(
   ({ item, onFormSubmit, onCancelSubmit }: ActivityFormProps) => {
     const [errMessage, setErrMessage] = useState("");
 
-    // useEffect(() => {
-    //     setTitle(item.title);
-    //     setAmount(item.amount);
-    //     setDate(item.date);
-    // }, [item])
-
     const amountInput = useRef<HTMLInputElement>(null);
     const dateInput = useRef<HTMLInputElement>(null);
     const titleInput = useRef<HTMLInputElement>(null);

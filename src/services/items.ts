@@ -7,14 +7,14 @@ import { flattenArr } from "../utility";
 
 export const useCategories = () => {
   return useQuery("categories", async () => {
-    const data = await axios.get("categories")
+    const data = await axios.get("/categories")
     return flattenArr(data.data)
   });
 };
 
 export const useItems = (params?: Partial<Item>) => {
   return useQuery(["items", params], async () => {
-    const data = await axios.get('items', { params })
+    const data = await axios.get('/items', { params })
     return flattenArr(data.data)
   });
 };
