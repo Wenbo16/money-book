@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { AppContext } from "../context";
-import logo from "../logo.svg";
-import Loader from "../components/Loader/Loader";
-import ActivityList from "../components/Activity-List/ActivityList";
-import Summary from "../components/Summary/Summary";
-import MonthPicker from "../components/Month-Picker/MonthPicker";
-import styled from "@emotion/styled";
-import { TYPE_OUTCOME } from "../utility";
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { AppContext } from '../context';
+import logo from '../logo.svg';
+import Loader from '../components/Loader/Loader';
+import ActivityList from '../components/Activity-List/ActivityList';
+import Summary from '../components/Summary/Summary';
+import MonthPicker from '../components/Month-Picker/MonthPicker';
+import styled from '@emotion/styled';
+import { TYPE_OUTCOME } from '../utility';
 import {
   useCategories,
   useItems,
   useDeleteItem,
   useGetMonthItems,
-} from "../services/items";
+} from '../services/items';
 
 // 数据流
 function Home() {
@@ -21,8 +21,8 @@ function Home() {
   const { data: categories = {} } = useCategories();
   const { data: items = {} } = useItems({
     monthCategory: `${currentDate.year}-${currentDate.month}`,
-    _sort: "timestamp",
-    _order: "desc",
+    _sort: 'timestamp',
+    _order: 'desc',
   });
 
   let history = useHistory();

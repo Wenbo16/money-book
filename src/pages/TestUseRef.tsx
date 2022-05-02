@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from 'react';
 
 export default function TestUseRef() {
   const [count, setCount] = useState(0);
@@ -6,7 +6,7 @@ export default function TestUseRef() {
 
   const onClickHandler = () => {
     setTimeout(() => {
-      alert("latest: " + countRef.current);
+      alert('latest: ' + countRef.current);
     }, 2000);
   };
 

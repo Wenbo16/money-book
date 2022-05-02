@@ -1,16 +1,16 @@
-import React from "react";
-import { mount } from "enzyme";
-import { CreatePage } from "./Create";
-import { parseToYearAndMonth, flatternArr, TYPE_OUTCOME } from "../utility";
-import Loader from "../components/Loader";
-import CategorySelect from "../components/CategorySelect";
-import PriceForm from "../components/PriceForm";
-import { testCategories, testItems } from "../testData";
+import React from 'react';
+import { mount } from 'enzyme';
+import { CreatePage } from './Create';
+import { parseToYearAndMonth, flatternArr, TYPE_OUTCOME } from '../utility';
+import Loader from '../components/Loader';
+import CategorySelect from '../components/CategorySelect';
+import PriceForm from '../components/PriceForm';
+import { testCategories, testItems } from '../testData';
 
 const testItem = testItems[0];
 const match = { params: { id: testItem.id } };
 const history = { push: () => {} };
-const createMatch = { params: { id: "" } };
+const createMatch = { params: { id: '' } };
 
 const initData = {
   categories: {},
@@ -26,8 +26,8 @@ const actions = {
       categories: flatternArr(testCategories),
     })
   ),
-  updateItem: jest.fn().mockReturnValueOnce(Promise.resolve("")),
-  createItem: jest.fn().mockReturnValueOnce(Promise.resolve("")),
+  updateItem: jest.fn().mockReturnValueOnce(Promise.resolve('')),
+  createItem: jest.fn().mockReturnValueOnce(Promise.resolve('')),
 };
 
 const withLoadedData = {
@@ -42,7 +42,7 @@ const loadingData = {
   isLoading: true,
 };
 
-describe("test component init behavior", () => {
+describe('test component init behavior', () => {
   //   it('test Create page for the first render, getEditData should be called with the right params', () => {
   //     const wrapper = mount(
   //       <CreatePage data={initData} actions={actions} match={match} />
@@ -50,7 +50,7 @@ describe("test component init behavior", () => {
   //     expect(actions.getEditData).toHaveBeenCalledWith(testItem.id)
   //   })
 
-  it("shoud show loading component when isLoaidng is true", () => {
+  it('shoud show loading component when isLoaidng is true', () => {
     const wrapper = mount(
       <CreatePage data={loadingData} actions={actions} match={match} />
     );
@@ -58,7 +58,7 @@ describe("test component init behavior", () => {
   });
 });
 
-describe("test component when in create mode", () => {
+describe('test component when in create mode', () => {
   const wrapper = mount(
     <CreatePage
       data={withLoadedData}
@@ -70,24 +70,24 @@ describe("test component when in create mode", () => {
   const setInputValue = (selector, newValue) => {
     wrapper.find(selector).instance().value = newValue;
   };
-  it("should pass the null to props selectedCategory for CategorySelect", () => {
+  it('should pass the null to props selectedCategory for CategorySelect', () => {
     expect(wrapper.find(CategorySelect).props().selectedCategory).toEqual(null);
   });
-  it("should pass empty object for PriceForm", () => {
+  it('should pass empty object for PriceForm', () => {
     expect(wrapper.find(PriceForm).props().item).toEqual({});
-    expect(wrapper.find(CreatePage).state("selectedTab")).toEqual(TYPE_OUTCOME);
+    expect(wrapper.find(CreatePage).state('selectedTab')).toEqual(TYPE_OUTCOME);
   });
   // it('submit the form, the addItem should not be triggered', () => {
   //   wrapper.find('form').simulate('submit')
   //   expect(actions.createItem).not.toHaveBeenCalled()
   // })
-  it("fill all inputs, and select the category, submit the form, addItem should be called", () => {
-    setInputValue("#title", "new title");
-    setInputValue("#price", "200");
-    setInputValue("#date", "2018-08-30");
-    wrapper.find(".category-item").first().simulate("click");
-    wrapper.find("form").simulate("submit");
-    const testData = { title: "new title", price: 200, date: "2018-08-30" };
+  it('fill all inputs, and select the category, submit the form, addItem should be called', () => {
+    setInputValue('#title', 'new title');
+    setInputValue('#price', '200');
+    setInputValue('#date', '2018-08-30');
+    wrapper.find('.category-item').first().simulate('click');
+    wrapper.find('form').simulate('submit');
+    const testData = { title: 'new title', price: 200, date: '2018-08-30' };
     expect(actions.createItem).toHaveBeenCalledWith(
       testData,
       testCategories[0].id
@@ -95,7 +95,7 @@ describe("test component when in create mode", () => {
   });
 });
 
-describe("test component when in edit mode", () => {
+describe('test component when in edit mode', () => {
   const wrapper = mount(
     <CreatePage
       data={withLoadedData}
@@ -110,16 +110,16 @@ describe("test component when in edit mode", () => {
   const selectedCategory = testCategories.find(
     (category) => testItem.cid === category.id
   );
-  it("should pass the right category to props selectedCategory for CategorySelect", () => {
+  it('should pass the right category to props selectedCategory for CategorySelect', () => {
     wrapper.update();
     expect(wrapper.find(CategorySelect).props().selectedCategory).toEqual(
       selectedCategory
     );
   });
-  it("modify some inputs submit the form, modifyItem should be called", () => {
-    setInputValue("#title", "new title");
-    wrapper.find("form").simulate("submit");
-    const testData = { ...testItem, title: "new title" };
+  it('modify some inputs submit the form, modifyItem should be called', () => {
+    setInputValue('#title', 'new title');
+    wrapper.find('form').simulate('submit');
+    const testData = { ...testItem, title: 'new title' };
     // expect(actions.updateItem).toHaveBeenCalledWith(
     //   testData,
     //   selectedCategory.id

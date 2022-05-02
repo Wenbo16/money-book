@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Home from "./pages/Home";
-import Create from "./pages/Create";
-import { parseToYearAndMonth } from "./utility";
-import { AppContext } from "./context";
-import Nav from "./pages/Nav";
-import Stats from "./pages/Stats";
-import TestUseCallback from "./pages/TestUseCallback";
-import TestUseRef from "./pages/TestUseRef";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Home from './pages/Home';
+import Create from './pages/Create';
+import { parseToYearAndMonth } from './utility';
+import { AppContext } from './context';
+import Nav from './pages/Nav';
+import Stats from './pages/Stats';
+import TestUseCallback from './pages/TestUseCallback';
+import TestUseRef from './pages/TestUseRef';
 
-import "./App.css";
+import './App.css';
 
 function App() {
   const queryClient = new QueryClient();

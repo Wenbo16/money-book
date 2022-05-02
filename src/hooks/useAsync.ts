@@ -1,14 +1,14 @@
-import { useCallback, useReducer, useState } from "react";
-import { useMountedRef } from "./useMountedRef";
+import { useCallback, useReducer, useState } from 'react';
+import { useMountedRef } from './useMountedRef';
 
 interface State<D> {
   error: Error | null;
   data: D | null;
-  stat: "idle" | "loading" | "error" | "success";
+  stat: 'idle' | 'loading' | 'error' | 'success';
 }
 
 const defaultInitialState: State<null> = {
-  stat: "idle",
+  stat: 'idle',
   data: null,
   error: null,
 };
@@ -46,7 +46,7 @@ export const useAsync = <D>(
     (data: D) =>
       safeDispatch({
         data,
-        stat: "success",
+        stat: 'success',
         error: null,
       }),
     [safeDispatch]
@@ -56,7 +56,7 @@ export const useAsync = <D>(
     (error: Error) =>
       safeDispatch({
         error,
-        stat: "error",
+        stat: 'error',
         data: null,
       }),
     [safeDispatch]
@@ -66,14 +66,14 @@ export const useAsync = <D>(
   const run = useCallback(
     (promise: Promise<D>, runConfig?: { retry: () => Promise<D> }) => {
       if (!promise || !promise.then) {
-        throw new Error("请传入 Promise 类型数据");
+        throw new Error('请传入 Promise 类型数据');
       }
       setRetry(() => () => {
         if (runConfig?.retry) {
           run(runConfig?.retry(), runConfig);
         }
       });
-      safeDispatch({ stat: "loading" });
+      safeDispatch({ stat: 'loading' });
       return promise
         .then((data) => {
           setData(data);
@@ -90,10 +90,10 @@ export const useAsync = <D>(
   );
 
   return {
-    isIdle: state.stat === "idle",
-    isLoading: state.stat === "loading",
-    isError: state.stat === "error",
-    isSuccess: state.stat === "success",
+    isIdle: state.stat === 'idle',
+    isLoading: state.stat === 'loading',
+    isError: state.stat === 'error',
+    isSuccess: state.stat === 'success',
     run,
     setData,
     setError,

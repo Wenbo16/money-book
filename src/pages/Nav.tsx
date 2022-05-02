@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { IonIcon } from "react-svg-ionicons";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from '@emotion/styled';
+import { IonIcon } from 'react-svg-ionicons';
+import { Link } from 'react-router-dom';
 
 export default function Nav() {
   return (
