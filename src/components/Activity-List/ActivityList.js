@@ -1,9 +1,9 @@
-import React from "react";
-import { IonIcon, addIcons } from "react-svg-ionicons";
-import bundle from "react-svg-ionicons/bundles/all";
+import React from 'react';
+import { IonIcon, addIcons } from 'react-svg-ionicons';
+import bundle from 'react-svg-ionicons/bundles/all';
 
-import PropTypes from "prop-types";
-import { Colors } from "../../utility";
+import PropTypes from 'prop-types';
+import { Colors } from '../../utility';
 
 addIcons(bundle);
 
@@ -12,7 +12,7 @@ const ActivityList = ({ items, onModifyItem, onDeleteItem }) => {
     <ul className="list-group list-group-flush">
       <li
         className="list-group-item d-flex justify-content-between align-items-center"
-        style={{ borderWidth: "0 0 2px" }}
+        style={{ borderWidth: '0 0 2px' }}
       >
         <span className="col-1 font-weight-bold">类型</span>
         <span className="col-5 font-weight-bold">类容</span>
@@ -31,14 +31,14 @@ const ActivityList = ({ items, onModifyItem, onDeleteItem }) => {
             <IonIcon
               className="rounded-circle"
               fontSize="30px"
-              style={{ backgroundColor: Colors.blue, padding: "5px" }}
-              color={"#fff"}
+              style={{ backgroundColor: Colors.blue, padding: '5px' }}
+              color={'#fff'}
               name={item.category.iconName}
             />
           </span>
           <span className="col-5">{item.title}</span>
           <span className="col-2 font-weight-bold">
-            {item.category.type === "income" ? "+" : "-"}
+            {item.category.type === 'income' ? '+' : '-'}
             {item.amount}元
           </span>
           <span className="col-2">{item.date}</span>
@@ -52,8 +52,8 @@ const ActivityList = ({ items, onModifyItem, onDeleteItem }) => {
             <IonIcon
               className="rounded-circle"
               fontSize="30px"
-              style={{ backgroundColor: Colors.green, padding: "5px" }}
-              color={"#fff"}
+              style={{ backgroundColor: Colors.green, padding: '5px' }}
+              color={'#fff'}
               name="create"
             />
           </a>
@@ -67,8 +67,8 @@ const ActivityList = ({ items, onModifyItem, onDeleteItem }) => {
             <IonIcon
               className="rounded-circle"
               fontSize="30px"
-              style={{ backgroundColor: Colors.red, padding: "5px" }}
-              color={"#fff"}
+              style={{ backgroundColor: Colors.red, padding: '5px' }}
+              color={'#fff'}
               name="close"
             />
           </a>

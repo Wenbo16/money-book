@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useRef, useEffect } from "react";
-import { makeMonthDoubleDigit, range } from "../../utility";
+import React, { useState, useRef, useEffect } from 'react';
+import { makeMonthDoubleDigit, range } from '../../utility';
 
 interface MonthPickerProps {
   year: number;
@@ -18,9 +18,9 @@ const MonthPicker = ({ year, month, onChange }: MonthPickerProps) => {
 
   // 点击下拉外部也可以关闭
   useEffect(() => {
-    document.addEventListener("click", onClickOutsideSpace, false);
+    document.addEventListener('click', onClickOutsideSpace, false);
     return () => {
-      document.removeEventListener("click", onClickOutsideSpace, false);
+      document.removeEventListener('click', onClickOutsideSpace, false);
     };
   });
 
@@ -61,7 +61,7 @@ const MonthPicker = ({ year, month, onChange }: MonthPickerProps) => {
         {`${year}年 ${makeMonthDoubleDigit(month)}月`}
       </button>
       {isOpen && (
-        <div className="dropdown-menu" style={{ display: "block" }}>
+        <div className="dropdown-menu" style={{ display: 'block' }}>
           <div className="row">
             <div className="col border-right years-range">
               {yearRange.map((yearNumber, index) => (
@@ -73,8 +73,8 @@ const MonthPicker = ({ year, month, onChange }: MonthPickerProps) => {
                   }}
                   className={
                     yearNumber === selectedYear
-                      ? "dropdown-item active text-white"
-                      : "dropdown-item"
+                      ? 'dropdown-item active text-white'
+                      : 'dropdown-item'
                   }
                 >
                   {yearNumber} 年
@@ -91,8 +91,8 @@ const MonthPicker = ({ year, month, onChange }: MonthPickerProps) => {
                   }}
                   className={
                     monthNumber === month
-                      ? "dropdown-item active text-white"
-                      : "dropdown-item"
+                      ? 'dropdown-item active text-white'
+                      : 'dropdown-item'
                   }
                 >
                   {makeMonthDoubleDigit(monthNumber)} 月

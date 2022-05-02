@@ -4,20 +4,20 @@ import React, {
   useContext,
   useCallback,
   useMemo,
-} from "react";
-import { useParams, useHistory } from "react-router-dom";
-import ActivityForm from "../components/Activity-Form/ActivityForm";
-import { Tabs, Tab } from "../components/Tabs/Tabs";
-import CategorySelect from "../components/CategorySelect/CategorySelect";
-import { TYPE_OUTCOME, TYPE_INCOME } from "../utility";
-import { AppContext } from "../context";
-import { Category, Item } from "../types";
+} from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import ActivityForm from '../components/Activity-Form/ActivityForm';
+import { Tabs, Tab } from '../components/Tabs/Tabs';
+import CategorySelect from '../components/CategorySelect/CategorySelect';
+import { TYPE_OUTCOME, TYPE_INCOME } from '../utility';
+import { AppContext } from '../context';
+import { Category, Item } from '../types';
 import {
   useItems,
   useCategories,
   useCreateItem,
   useUpdateItem,
-} from "../services/items";
+} from '../services/items';
 
 const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
@@ -69,17 +69,17 @@ const Create = () => {
           data,
           categoryId: selectedCategory.id,
         });
-        history.push("/");
+        history.push('/');
       } else {
         await updateCreateItem({ data, categoryId: selectedCategory.id });
-        history.push("/");
+        history.push('/');
       }
     },
     [selectedCategory]
   );
 
   const cancelSubmit = useCallback(() => {
-    history.push("/");
+    history.push('/');
   }, []);
 
   const filterCategories = useMemo(
@@ -102,7 +102,7 @@ const Create = () => {
   return (
     <div
       className="create-page py-3 px-3 rounded mt-3"
-      style={{ background: "#fff" }}
+      style={{ background: '#fff' }}
     >
       <Tabs activeIndex={tabs.indexOf(selectedTab)} onTabChange={onTabChange}>
         <Tab>Outcome</Tab>
