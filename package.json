@@ -30,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mock": "json-server --watch db.json --port 3004"
+    "mock": "json-server --watch db.json --port 3004",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
     "@types/qs": "^6.9.7",
     "classnames": "^2.3.1",
     "concurrently": "^5.2.0",
@@ -62,5 +65,8 @@
     "lint-staged": "^12.4.1",
     "prettier": "2.6.2"
   },
-  "proxy": "http://localhost:3004"
+  "proxy": "http://localhost:3004",
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
+  }
 }
