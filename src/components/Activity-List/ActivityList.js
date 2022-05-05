@@ -1,13 +1,25 @@
 import React from 'react';
 import { IonIcon, addIcons } from 'react-svg-ionicons';
+import { useHistory } from 'react-router-dom';
 import bundle from 'react-svg-ionicons/bundles/all';
-
+import { useDeleteItem } from '../../services/items';
 import PropTypes from 'prop-types';
 import { Colors } from '../../utility';
 
 addIcons(bundle);
 
-const ActivityList = ({ items, onModifyItem, onDeleteItem }) => {
+const ActivityList = ({ items }) => {
+  let history = useHistory();
+  const { mutate: mutateDeleteItem } = useDeleteItem();
+
+  const onModifyItem = (modifiedItem) => {
+    history.push(`/edit/${modifiedItem.id}`);
+  };
+
+  const onDeleteItem = (item) => {
+    mutateDeleteItem(item.id);
+  };
+
   return (
     <ul className="list-group list-group-flush">
       <li

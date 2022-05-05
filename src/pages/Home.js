@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import { AppContext } from '../context';
 import logo from '../logo.svg';
 import Loader from '../components/Loader/Loader';
@@ -8,12 +7,7 @@ import Summary from '../components/Summary/Summary';
 import MonthPicker from '../components/Month-Picker/MonthPicker';
 import styled from '@emotion/styled';
 import { TYPE_OUTCOME } from '../utility';
-import {
-  useCategories,
-  useItems,
-  useDeleteItem,
-  useGetMonthItems,
-} from '../services/items';
+import { useCategories, useItems, useGetMonthItems } from '../services/items';
 
 // 数据流
 function Home() {
@@ -25,22 +19,12 @@ function Home() {
     _order: 'desc',
   });
 
-  let history = useHistory();
-  const { mutate: mutateDeleteItem } = useDeleteItem();
   const { mutate: mutateGetMonthItems } = useGetMonthItems();
 
   const changeDate = (year, month) => {
     mutateGetMonthItems(year, month).then((items) => {
       setCurrentDate({ year, month });
     });
-  };
-
-  const modifyItem = (modifiedItem) => {
-    history.push(`/edit/${modifiedItem.id}`);
-  };
-
-  const deleteItem = (item) => {
-    mutateDeleteItem(item.id);
   };
 
   const itemsWithCategory = Object.keys(items).map((id) => {
@@ -81,11 +65,7 @@ function Home() {
         </div>
       </Header>
       <div className="content-area py-3 px-3">
-        <ActivityList
-          items={itemsWithCategory}
-          onModifyItem={modifyItem}
-          onDeleteItem={deleteItem}
-        />
+        <ActivityList items={itemsWithCategory} />
       </div>
     </div>
   );

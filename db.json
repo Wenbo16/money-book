@@ -332,6 +332,15 @@
       "timestamp": 1649203200000,
       "id": "_qnhse7h47",
       "cid": "6"
+    },
+    {
+      "title": "new item",
+      "amount": 222,
+      "date": "2022-05-05",
+      "monthCategory": "2022-5",
+      "timestamp": 1651708800000,
+      "id": "_nvi317poo",
+      "cid": "6"
     }
   ]
 }

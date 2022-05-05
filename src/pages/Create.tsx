@@ -30,7 +30,6 @@ const Create = () => {
   });
 
   const [isValid, setIsValid] = useState(true);
-
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
@@ -75,12 +74,12 @@ const Create = () => {
         history.push('/');
       }
     },
-    [selectedCategory]
+    [history, mutateCreateItem, selectedCategory, updateCreateItem]
   );
 
   const cancelSubmit = useCallback(() => {
     history.push('/');
-  }, []);
+  }, [history]);
 
   const filterCategories = useMemo(
     () =>

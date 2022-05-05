@@ -49,7 +49,6 @@ const ActivityForm = memo(
         }
       }
     };
-
     return (
       <div>
         <form>
