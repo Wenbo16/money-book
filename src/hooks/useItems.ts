@@ -1,6 +1,6 @@
 import { useAsync } from './useAsync';
 import axios from 'axios';
-import { ID, parseToYearAndMonth } from '../utility';
+import { ID, parseToYearAndMonth } from '../utils/utility';
 import { Item } from '../types';
 
 export const useGetMonthItems = () => {

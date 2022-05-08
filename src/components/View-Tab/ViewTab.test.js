@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ViewTab from './ViewTab';
-import { LIST_VIEW, CHART_VIEW } from '../../utility';
+import { LIST_VIEW, CHART_VIEW } from '../../utils/utility';
 
 describe('test ViewTab component', () => {
   const props = {

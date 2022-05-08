@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useRef, useEffect } from 'react';
-import { makeMonthDoubleDigit, range } from '../../utility';
+import { makeMonthDoubleDigit, range } from '../../utils/utility';
 
 interface MonthPickerProps {
   year: number;

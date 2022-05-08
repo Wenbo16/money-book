@@ -1,29 +1,35 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context';
+import React, { useEffect } from 'react';
 import logo from '../logo.svg';
 import Loader from '../components/Loader/Loader';
 import ActivityList from '../components/Activity-List/ActivityList';
 import Summary from '../components/Summary/Summary';
 import MonthPicker from '../components/Month-Picker/MonthPicker';
 import styled from '@emotion/styled';
-import { TYPE_OUTCOME } from '../utility';
+import { TYPE_OUTCOME } from '../utils/utility';
 import { useCategories, useItems, useGetMonthItems } from '../services/items';
-
+import {
+  useUrlQueryParam,
+  useSetUrlSearchParam,
+} from '../hooks/useUrlQueryParam';
+import { parseToYearAndMonth } from '../utils/utility';
+import { useItemsQueryKey } from './utils';
 // 数据流
 function Home() {
-  const { currentDate, setCurrentDate } = useContext(AppContext);
+  const currentDate = parseToYearAndMonth();
+  const setSearchParams = useSetUrlSearchParam();
   const { data: categories = {} } = useCategories();
-  const { data: items = {} } = useItems({
-    monthCategory: `${currentDate.year}-${currentDate.month}`,
-    _sort: 'timestamp',
-    _order: 'desc',
-  });
+  const [searchParams] = useUrlQueryParam(['year', 'month']);
 
+  useEffect(() => {
+    if (!searchParams.year || !searchParams.month) setSearchParams(currentDate);
+  }, [searchParams, currentDate, setSearchParams]);
+
+  const { data: items = {} } = useItems(useItemsQueryKey());
   const { mutate: mutateGetMonthItems } = useGetMonthItems();
 
   const changeDate = (year, month) => {
     mutateGetMonthItems(year, month).then((items) => {
-      setCurrentDate({ year, month });
+      setSearchParams({ year: year, month: month });
     });
   };
 
@@ -54,8 +60,8 @@ function Home() {
         <div className="row">
           <div className="col">
             <MonthPicker
-              year={currentDate.year}
-              month={currentDate.month}
+              year={Number(searchParams.year)}
+              month={Number(searchParams.month)}
               onChange={changeDate}
             />
           </div>

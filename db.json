@@ -335,12 +335,12 @@
     },
     {
       "title": "new item",
-      "amount": 222,
+      "amount": 111,
       "date": "2022-05-05",
       "monthCategory": "2022-5",
       "timestamp": 1651708800000,
       "id": "_nvi317poo",
-      "cid": "6"
+      "cid": "5"
     }
   ]
 }

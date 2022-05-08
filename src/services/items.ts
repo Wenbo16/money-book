@@ -1,9 +1,9 @@
 import { useAsync } from '../hooks/useAsync';
 import axios from 'axios';
-import { ID, parseToYearAndMonth } from '../utility';
+import { ID, parseToYearAndMonth } from '../utils/utility';
 import { Item } from '../types';
 import { useQueryClient, useMutation, useQuery } from 'react-query';
-import { flattenArr } from '../utility';
+import { flattenArr } from '../utils/utility';
 
 export const useCategories = () => {
   return useQuery('categories', async () => {
@@ -16,6 +16,13 @@ export const useItems = (params?: Partial<Item>) => {
   return useQuery(['items', params], async () => {
     const data = await axios.get('/items', { params });
     return flattenArr(data.data);
+  });
+};
+
+export const useItem = (id?: string) => {
+  return useQuery(['items', id], async () => {
+    const data = await axios.get(`/items/${id}`);
+    return data.data;
   });
 };
 

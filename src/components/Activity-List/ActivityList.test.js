@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Ionicon from 'react-ionicons';
 import ActivityList from './ActivityList';
 import { testItems, testCategories } from '../../testData';
-import { flattenArr } from '../../utility';
+import { flattenArr } from '../../utils/utility';
 
 /**
  * 1. 传入特定数组，是否渲染对应长度的条目

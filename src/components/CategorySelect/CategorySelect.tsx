@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Colors } from '../../utility';
+import { Colors } from '../../utils/utility';
 import { IonIcon, addIcons } from 'react-svg-ionicons';
 import bundle from 'react-svg-ionicons/bundles/all';
 import { Category } from '../../types';

@@ -1,7 +1,6 @@
 import React from 'react';
-import Ionicon from 'react-ionicons';
 import PropTypes from 'prop-types';
-import { LIST_VIEW, CHART_VIEW } from '../../utility';
+import { LIST_VIEW } from '../../utils/utility';
 
 const generateLinkClass = (current, view) => {
   return current === view ? 'nav-link active' : 'nav-link';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Ionicon from 'react-ionicons';
-import { Colors } from '../../utility';
+import { Colors } from '../../utils/utility';
 
 const Loader = () => (
   <div className="loading-component text-center">

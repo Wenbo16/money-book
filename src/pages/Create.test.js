@@ -1,7 +1,11 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { CreatePage } from './Create';
-import { parseToYearAndMonth, flatternArr, TYPE_OUTCOME } from '../utility';
+import {
+  parseToYearAndMonth,
+  flatternArr,
+  TYPE_OUTCOME,
+} from '../utils/utility';
 import Loader from '../components/Loader';
 import CategorySelect from '../components/CategorySelect';
 import PriceForm from '../components/PriceForm';

@@ -1,19 +1,19 @@
 import React from 'react';
 import { IonIcon, addIcons } from 'react-svg-ionicons';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import bundle from 'react-svg-ionicons/bundles/all';
 import { useDeleteItem } from '../../services/items';
 import PropTypes from 'prop-types';
-import { Colors } from '../../utility';
+import { Colors } from '../../utils/utility';
 
 addIcons(bundle);
 
 const ActivityList = ({ items }) => {
-  let history = useHistory();
+  let navigate = useNavigate();
   const { mutate: mutateDeleteItem } = useDeleteItem();
 
   const onModifyItem = (modifiedItem) => {
-    history.push(`/edit/${modifiedItem.id}`);
+    navigate(`/edit/${modifiedItem.id}`);
   };
 
   const onDeleteItem = (item) => {
@@ -92,8 +92,6 @@ const ActivityList = ({ items }) => {
 
 ActivityList.propTypes = {
   items: PropTypes.array.isRequired,
-  onModifyItem: PropTypes.func.isRequired,
-  onDeleteItem: PropTypes.func.isRequired,
 };
 
 export default ActivityList;

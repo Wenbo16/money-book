@@ -1,5 +1,5 @@
 import React, { useState, useRef, memo } from 'react';
-import { isValidDate } from '../../utility';
+import { isValidDate } from '../../utils/utility';
 import { Item } from '../../types';
 
 interface ActivityFormProps {

@@ -1,19 +1,12 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-  useMemo,
-} from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import ActivityForm from '../components/Activity-Form/ActivityForm';
 import { Tabs, Tab } from '../components/Tabs/Tabs';
 import CategorySelect from '../components/CategorySelect/CategorySelect';
-import { TYPE_OUTCOME, TYPE_INCOME } from '../utility';
-import { AppContext } from '../context';
+import { TYPE_OUTCOME, TYPE_INCOME } from '../utils/utility';
 import { Category, Item } from '../types';
 import {
-  useItems,
+  useItem,
   useCategories,
   useCreateItem,
   useUpdateItem,
@@ -23,11 +16,7 @@ const tabs = [TYPE_OUTCOME, TYPE_INCOME];
 
 const Create = () => {
   const { id } = useParams<{ id: string }>();
-  const { currentDate } = useContext(AppContext);
   const { data: categories = {} } = useCategories();
-  const { data: items = {} } = useItems({
-    monthCategory: `${currentDate.year}-${currentDate.month}`,
-  });
 
   const [isValid, setIsValid] = useState(true);
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
@@ -35,27 +24,23 @@ const Create = () => {
     null
   );
 
-  // editItem has to be a state, otherwise every refresh(by setIsValid) would re-run the function component thus pass by a new item
-  const [editItem, setEditItem] = useState<Item | {}>({});
+  // editItem has to be a state, otherwise
+  // every refresh(by setIsValid) would re - run the function component thus pass by a new item
+  // const [editItem, setEditItem] = useState<Item | {}>({});
 
-  let history = useHistory();
+  let navigate = useNavigate();
   const { mutate: mutateCreateItem } = useCreateItem();
   const { mutate: updateCreateItem } = useUpdateItem();
+  const { data: editItem } = useItem(id);
 
   useEffect(() => {
     // wait until we have initial data
-    const curEditItem = id && items[id] ? items[id] : {};
-
-    setEditItem(curEditItem);
-    const hasEditItemCategory =
-      id && curEditItem && categories[curEditItem.cid];
+    const hasEditItemCategory = id && editItem && categories[editItem.cid];
     setSelectedTab(
-      hasEditItemCategory ? categories[curEditItem.cid].type : TYPE_OUTCOME
+      hasEditItemCategory ? categories[editItem.cid].type : TYPE_OUTCOME
     );
-    setSelectedCategory(
-      hasEditItemCategory ? categories[curEditItem.cid] : null
-    );
-  }, [id, items, categories]);
+    setSelectedCategory(hasEditItemCategory ? categories[editItem.cid] : null);
+  }, [id, editItem, categories]);
 
   const submitForm = useCallback(
     async (data: Partial<Item>, isEditMode) => {
@@ -68,18 +53,18 @@ const Create = () => {
           data,
           categoryId: selectedCategory.id,
         });
-        history.push('/');
+        navigate('/');
       } else {
         await updateCreateItem({ data, categoryId: selectedCategory.id });
-        history.push('/');
+        navigate('/');
       }
     },
-    [history, mutateCreateItem, selectedCategory, updateCreateItem]
+    [navigate, mutateCreateItem, selectedCategory, updateCreateItem]
   );
 
   const cancelSubmit = useCallback(() => {
-    history.push('/');
-  }, [history]);
+    navigate('/');
+  }, [navigate]);
 
   const filterCategories = useMemo(
     () =>
