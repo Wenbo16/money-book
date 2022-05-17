@@ -26,7 +26,7 @@ const ActivityForm = memo(
       const date = dateInput?.current?.value.trim();
       const title = titleInput?.current?.value.trim();
 
-      if (!amount || !date || !title) {
+      if (amount === 0 || !date || !title) {
         setErrMessage('请输入所有必选项');
       } else {
         if (amount < 0) {
@@ -49,15 +49,17 @@ const ActivityForm = memo(
         }
       }
     };
+
     return (
       <div>
-        <form>
+        <form name="activity-form">
           <div className="form-group">
             <label htmlFor="activity-form-title">Title</label>
             <input
               type="text"
               className="form-control"
               id="activity-form-title"
+              name="activity-form-title"
               placeholder="请输入标题"
               defaultValue={isItem(item) ? item?.title : ''}
               ref={titleInput}
@@ -69,8 +71,9 @@ const ActivityForm = memo(
               type="number"
               className="form-control"
               id="activity-form-amount"
+              name="activity-form-amount"
               placeholder="请输入金额"
-              defaultValue={isItem(item) ? item?.amount : ''}
+              defaultValue={isItem(item) ? item?.amount : 0}
               ref={amountInput}
             />
           </div>
@@ -80,6 +83,7 @@ const ActivityForm = memo(
               type="date"
               className="form-control"
               id="activity-form-date"
+              name="activity-form-date"
               defaultValue={isItem(item) ? item?.date : ''}
               placeholder="请输入日期"
               ref={dateInput}

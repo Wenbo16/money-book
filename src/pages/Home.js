@@ -28,7 +28,7 @@ function Home() {
   const { mutate: mutateGetMonthItems } = useGetMonthItems();
 
   const changeDate = (year, month) => {
-    mutateGetMonthItems(year, month).then((items) => {
+    mutateGetMonthItems(year, month).then(() => {
       setSearchParams({ year: year, month: month });
     });
   };

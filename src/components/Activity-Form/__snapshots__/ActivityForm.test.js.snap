@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test ActivityForm component should render the component to match snapshot 1`] = `
+<div>
+  <form
+    name="activity-form"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        defaultValue=""
+        id="activity-form-title"
+        name="activity-form-title"
+        placeholder="请输入标题"
+        type="text"
+      />
+    </div>
+    <br />
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+    <button
+      className="btn btn-secondary"
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </button>
+  </form>
+  <br />
+</div>
+`;
+
+exports[`test ActivityForm component should render the component to match snapshot 2`] = `
+<div>
+  <form
+    name="activity-form"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        defaultValue=""
+        id="activity-form-title"
+        name="activity-form-title"
+        placeholder="请输入标题"
+        type="text"
+      />
+    </div>
+    <br />
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+    <button
+      className="btn btn-secondary"
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </button>
+  </form>
+  <br />
+</div>
+`;
