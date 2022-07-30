@@ -15,11 +15,48 @@ exports[`test ActivityForm component should render the component to match snapsh
       </label>
       <input
         className="form-control"
-        defaultValue=""
         id="activity-form-title"
         name="activity-form-title"
+        onChange={[Function]}
         placeholder="请输入标题"
         type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-amount"
+      >
+        Amount
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-amount"
+        name="activity-form-amount"
+        onChange={[Function]}
+        placeholder="请输入金额"
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-date"
+      >
+        Date
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-date"
+        name="activity-form-date"
+        onChange={[Function]}
+        placeholder="请输入日期"
+        type="date"
+        value=""
       />
     </div>
     <br />
@@ -38,6 +75,7 @@ exports[`test ActivityForm component should render the component to match snapsh
     </button>
   </form>
   <br />
+  
 </div>
 `;
 
@@ -56,11 +94,48 @@ exports[`test ActivityForm component should render the component to match snapsh
       </label>
       <input
         className="form-control"
-        defaultValue=""
         id="activity-form-title"
         name="activity-form-title"
+        onChange={[Function]}
         placeholder="请输入标题"
         type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-amount"
+      >
+        Amount
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-amount"
+        name="activity-form-amount"
+        onChange={[Function]}
+        placeholder="请输入金额"
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-date"
+      >
+        Date
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-date"
+        name="activity-form-date"
+        onChange={[Function]}
+        placeholder="请输入日期"
+        type="date"
+        value=""
       />
     </div>
     <br />
@@ -79,5 +154,6 @@ exports[`test ActivityForm component should render the component to match snapsh
     </button>
   </form>
   <br />
+  
 </div>
 `;

@@ -2,8 +2,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-// import RTL from '../../pages/';
-
 import ActivityForm from './ActivityForm';
 import { testItems } from '../../testData';
 let props = {
@@ -57,27 +55,6 @@ describe('test ActivityForm with no item', () => {
     expect(props_with_item.onFormSubmit).not.toHaveBeenCalled();
   });
 
-  it('submit form with invalid amount should show alert message', () => {
-    render(<ActivityForm {...props} />);
-    fireEvent.change(screen.getByLabelText('Title'), {
-      target: { value: 'teste' },
-    });
-    fireEvent.change(screen.getByLabelText('Amount'), {
-      target: { value: '-20' },
-    });
-
-    // fireEvent.click(screen.getByText('Submit'));
-    screen.debug();
-    expect(screen.getByRole('form')).toBeInvalid();
-  });
-
-  // it('submit form with invalid date format should show alert message', () => {
-  //   setInputValue('#title', 'test', wrapper);
-  //   setInputValue('#amount', '20', wrapper);
-  //   setInputValue('#date', 'wrong date', wrapper);
-  //   fireEvent.click(screen.getByText('Submit'));
-  //   //   expect(formInstance.state.validatePass).toEqual(false)
-  // });
   // it('submit form with valid data should call with the right object', () => {
   //   setInputValue('#title', 'test', wrapper);
   //   setInputValue('#amount', '20', wrapper);

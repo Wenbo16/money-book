@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useState, useRef, memo, useEffect } from 'react';
 import { isValidDate } from '../../utils/utility';
 import { Item } from '../../types';
 
@@ -12,37 +12,43 @@ interface ActivityFormProps {
 const ActivityForm = memo(
   ({ item, onFormSubmit, onCancelSubmit }: ActivityFormProps) => {
     const [errMessage, setErrMessage] = useState('');
+    const [amount, setAmount] = useState<number>(0);
+    const [date, setDate] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
 
-    const amountInput = useRef<HTMLInputElement>(null);
-    const dateInput = useRef<HTMLInputElement>(null);
-    const titleInput = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+      setTitle(isItem(item) ? item?.date : '');
+      setAmount(isItem(item) ? item?.amount : 0);
+      setDate(isItem(item) ? item?.date : '');
+    }, [item]);
 
     const isItem = (value: any): value is Item => value?.id;
 
     const submitForm = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.preventDefault();
       const editMode = !!isItem(item);
-      const amount = Number(amountInput?.current?.value.trim());
-      const date = dateInput?.current?.value.trim();
-      const title = titleInput?.current?.value.trim();
-
       if (amount === 0 || !date || !title) {
         setErrMessage('请输入所有必选项');
       } else {
         if (amount < 0) {
           setErrMessage('价格数字必须大于0');
-        } else if (!isValidDate(date)) {
+        } else if (!isValidDate(date?.trim())) {
           setErrMessage('请填写正确的日期格式');
         } else {
           setErrMessage('');
           if (editMode) {
             onFormSubmit(
-              { ...item, title: title, amount: amount, date: date },
+              {
+                ...item,
+                title: title?.trim(),
+                amount: amount,
+                date: date?.trim(),
+              },
               editMode
             );
           } else {
             onFormSubmit(
-              { title: title, amount: amount, date: date },
+              { title: title?.trim(), amount: amount, date: date },
               editMode
             );
           }
@@ -61,8 +67,8 @@ const ActivityForm = memo(
               id="activity-form-title"
               name="activity-form-title"
               placeholder="请输入标题"
-              defaultValue={isItem(item) ? item?.title : ''}
-              ref={titleInput}
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
             />
           </div>
           <div className="form-group">
@@ -73,8 +79,8 @@ const ActivityForm = memo(
               id="activity-form-amount"
               name="activity-form-amount"
               placeholder="请输入金额"
-              defaultValue={isItem(item) ? item?.amount : 0}
-              ref={amountInput}
+              onChange={(e) => setAmount(Number(e.target.value))}
+              value={amount}
             />
           </div>
           <div className="form-group">
@@ -84,9 +90,9 @@ const ActivityForm = memo(
               className="form-control"
               id="activity-form-date"
               name="activity-form-date"
-              defaultValue={isItem(item) ? item?.date : ''}
               placeholder="请输入日期"
-              ref={dateInput}
+              onChange={(e) => setDate(e.target.value)}
+              value={date}
             />
           </div>
           <br />

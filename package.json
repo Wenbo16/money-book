@@ -70,6 +70,6 @@
   "proxy": "http://localhost:3004",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{js,css,ts,tsx}": "prettier --write"
+    "*.{js,jsx,css,ts,tsx}": "prettier --write"
   }
 }
