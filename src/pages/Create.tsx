@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 import ActivityForm from '../components/Activity-Form/ActivityForm';
 import { Tabs, Tab } from '../components/Tabs/Tabs';
 import CategorySelect from '../components/CategorySelect/CategorySelect';
@@ -13,6 +15,11 @@ import {
 } from '../services/items';
 
 const tabs = [TYPE_OUTCOME, TYPE_INCOME];
+const initialValues = {
+  amount: 0,
+  date: '',
+  title: '',
+};
 
 const Create = () => {
   const { id } = useParams<{ id: string }>();
@@ -29,8 +36,8 @@ const Create = () => {
   // const [editItem, setEditItem] = useState<Item | {}>({});
 
   let navigate = useNavigate();
-  const { mutate: mutateCreateItem } = useCreateItem();
-  const { mutate: updateCreateItem } = useUpdateItem();
+  const { mutate: createItem } = useCreateItem();
+  const { mutate: updateItem } = useUpdateItem();
   const { data: editItem } = useItem(id);
 
   useEffect(() => {
@@ -49,17 +56,20 @@ const Create = () => {
         return;
       }
       if (!isEditMode) {
-        await mutateCreateItem({
+        await createItem({
           data,
           categoryId: selectedCategory.id,
         });
         navigate('/');
       } else {
-        await updateCreateItem({ data, categoryId: selectedCategory.id });
+        await updateItem({
+          data: { ...editItem, ...data },
+          categoryId: selectedCategory.id,
+        });
         navigate('/');
       }
     },
-    [navigate, mutateCreateItem, selectedCategory, updateCreateItem]
+    [navigate, createItem, selectedCategory, updateItem, editItem]
   );
 
   const cancelSubmit = useCallback(() => {
@@ -84,30 +94,55 @@ const Create = () => {
   }, []);
 
   return (
-    <div
-      className="create-page py-3 px-3 rounded mt-3"
-      style={{ background: '#fff' }}
+    <Formik
+      initialValues={editItem ?? initialValues}
+      enableReinitialize
+      validationSchema={Yup.object({
+        amount: Yup.number()
+          .required('Required')
+          .positive('价格数字必须大于0')
+          .integer(),
+        date: Yup.date().required('Required'),
+        title: Yup.string().required('Required'),
+      })}
+      onSubmit={(values) => {
+        submitForm(values, !!editItem);
+      }}
     >
-      <Tabs activeIndex={tabs.indexOf(selectedTab)} onTabChange={onTabChange}>
-        <Tab>Outcome</Tab>
-        <Tab>Income</Tab>
-      </Tabs>
-      <CategorySelect
-        categories={filterCategories}
-        onSelectCategory={selectCategory}
-        selectedCategory={selectedCategory}
-      />
-      <ActivityForm
-        onFormSubmit={submitForm}
-        onCancelSubmit={cancelSubmit}
-        item={editItem}
-      />
-      {!isValid && (
-        <div className="alert alert-danger mt-5" role="alert">
-          请选择分类信息
-        </div>
-      )}
-    </div>
+      {({ errors, touched, values }) => {
+        console.log(errors);
+        return (
+          <div
+            className="create-page py-3 px-3 rounded mt-3"
+            style={{ background: '#fff' }}
+          >
+            <Tabs
+              activeIndex={tabs.indexOf(selectedTab)}
+              onTabChange={onTabChange}
+            >
+              <Tab>Outcome</Tab>
+              <Tab>Income</Tab>
+            </Tabs>
+            <CategorySelect
+              categories={filterCategories}
+              onSelectCategory={selectCategory}
+              selectedCategory={selectedCategory}
+            />
+            <ActivityForm
+              onCancelSubmit={cancelSubmit}
+              item={editItem}
+              errors={errors}
+              touched={touched}
+            />
+            {!isValid && (
+              <div className="alert alert-danger mt-5" role="alert">
+                请选择分类信息
+              </div>
+            )}
+          </div>
+        );
+      }}
+    </Formik>
   );
 };
 

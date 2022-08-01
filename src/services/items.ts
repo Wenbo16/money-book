@@ -20,10 +20,17 @@ export const useItems = (params?: Partial<Item>) => {
 };
 
 export const useItem = (id?: string) => {
-  return useQuery(['items', id], async () => {
-    const data = await axios.get(`/items/${id}`);
-    return data.data;
-  });
+  return useQuery(
+    ['items', id],
+    async () => {
+      const data = await axios.get(`/items/${id}`);
+      return data.data;
+    },
+    {
+      // The query will not execute until the id exists
+      enabled: !!id,
+    }
+  );
 };
 
 export const useGetMonthItems = () => {
@@ -54,7 +61,7 @@ export const useCreateItem = () => {
       });
     },
     {
-      onSuccess: () => queryClient.invalidateQueries('/items'),
+      onSuccess: () => queryClient.invalidateQueries('items'),
     }
   );
 };
@@ -72,11 +79,14 @@ export const useUpdateItem = () => {
       return axios.put(`/items/${modifiedItem.id}`, modifiedItem);
     },
     {
-      onSuccess: () => queryClient.invalidateQueries('/items'),
+      onSuccess: () => queryClient.invalidateQueries('items'),
     }
   );
 };
 
 export const useDeleteItem = () => {
-  return useMutation((id: string) => axios.delete(`/items/${id}`));
+  const queryClient = useQueryClient();
+  return useMutation((id: string) => axios.delete(`/items/${id}`), {
+    onSuccess: () => queryClient.invalidateQueries('items'),
+  });
 };
