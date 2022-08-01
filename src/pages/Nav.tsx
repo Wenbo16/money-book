@@ -1,7 +1,10 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { IonIcon } from "react-svg-ionicons";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from '@emotion/styled';
+import { IonIcon, addIcons } from 'react-svg-ionicons';
+import bundle from 'react-svg-ionicons/bundles/all';
+import { Link } from 'react-router-dom';
+
+addIcons(bundle);
 
 export default function Nav() {
   return (
@@ -39,7 +42,6 @@ export default function Nav() {
             />
           </NavLink>
         </NavItem>
-
         <NavItem className="navItem">
           <NavLink to="/map">
             <IonIcon

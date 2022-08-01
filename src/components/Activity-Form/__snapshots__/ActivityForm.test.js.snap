@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test ActivityForm component should render the component to match snapshot 1`] = `
+<div>
+  <form
+    name="activity-form"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-title"
+        name="activity-form-title"
+        onChange={[Function]}
+        placeholder="请输入标题"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-amount"
+      >
+        Amount
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-amount"
+        name="activity-form-amount"
+        onChange={[Function]}
+        placeholder="请输入金额"
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-date"
+      >
+        Date
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-date"
+        name="activity-form-date"
+        onChange={[Function]}
+        placeholder="请输入日期"
+        type="date"
+        value=""
+      />
+    </div>
+    <br />
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+    <button
+      className="btn btn-secondary"
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </button>
+  </form>
+  <br />
+  
+</div>
+`;
+
+exports[`test ActivityForm component should render the component to match snapshot 2`] = `
+<div>
+  <form
+    name="activity-form"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-title"
+        name="activity-form-title"
+        onChange={[Function]}
+        placeholder="请输入标题"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-amount"
+      >
+        Amount
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-amount"
+        name="activity-form-amount"
+        onChange={[Function]}
+        placeholder="请输入金额"
+        type="number"
+        value={0}
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="activity-form-date"
+      >
+        Date
+      </label>
+      <input
+        className="form-control"
+        id="activity-form-date"
+        name="activity-form-date"
+        onChange={[Function]}
+        placeholder="请输入日期"
+        type="date"
+        value=""
+      />
+    </div>
+    <br />
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+    <button
+      className="btn btn-secondary"
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </button>
+  </form>
+  <br />
+  
+</div>
+`;

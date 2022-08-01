@@ -204,11 +204,11 @@
       "cid": "1"
     },
     {
-      "title": "dfgs",
-      "amount": 234,
-      "date": "2022-07-03",
+      "title": "new item 1",
+      "amount": 111,
+      "date": "2022-08-30",
       "monthCategory": "2022-7",
-      "timestamp": 1593734400000,
+      "timestamp": 1661817600000,
       "id": "_pq3t9pgxs",
       "cid": "6"
     },
@@ -331,6 +331,51 @@
       "monthCategory": "2022-4",
       "timestamp": 1649203200000,
       "id": "_qnhse7h47",
+      "cid": "6"
+    },
+    {
+      "title": "new item",
+      "amount": 111,
+      "date": "2022-05-05",
+      "monthCategory": "2022-5",
+      "timestamp": 1651708800000,
+      "id": "_nvi317poo",
+      "cid": "5"
+    },
+    {
+      "title": "2022-05-16",
+      "amount": 12312,
+      "date": "2022-05-16",
+      "monthCategory": "2022-5",
+      "timestamp": 1652659200000,
+      "id": "_aeudu90f9",
+      "cid": "6"
+    },
+    {
+      "amount": 121,
+      "date": "2022-07-30",
+      "title": "new item 2",
+      "monthCategory": "2022-7",
+      "timestamp": 1659139200000,
+      "id": "_hja17i0lt",
+      "cid": "1"
+    },
+    {
+      "amount": 123,
+      "date": "2022-07-28",
+      "title": "new item 3",
+      "monthCategory": "2022-7",
+      "timestamp": 1658966400000,
+      "id": "_lzrzxx1f0",
+      "cid": "6"
+    },
+    {
+      "amount": 22,
+      "date": "2022-08-01",
+      "title": "test",
+      "monthCategory": "2022-8",
+      "timestamp": 1659312000000,
+      "id": "_rbafnzqmj",
       "cid": "6"
     }
   ]

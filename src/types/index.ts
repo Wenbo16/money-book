@@ -6,7 +6,7 @@ export interface Category {
 }
 
 export interface Item {
-  amount: string;
+  amount: number;
   category: Category;
   cid: string;
   date: string;
